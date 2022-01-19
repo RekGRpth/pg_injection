@@ -4,6 +4,7 @@
 
 #include <fmgr.h>
 #include <parser/analyze.h>
+#include <tcop/tcopprot.h>
 #include <utils/guc.h>
 
 PG_MODULE_MAGIC;
@@ -28,8 +29,9 @@ static int report_level = WARNING;
 static post_parse_analyze_hook_type prev_post_parse_analyze_hook = NULL;
 
 static void my_post_parse_analyze_hook(ParseState *pstate, Query *query, JumbleState *jstate) {
+    const char *sql = debug_query_string ? debug_query_string : pstate->p_sourcetext;
     sfilter sf;
-    libinjection_sqli_init(&sf, pstate->p_sourcetext, strlen(pstate->p_sourcetext), FLAG_NONE | FLAG_QUOTE_NONE | FLAG_QUOTE_SINGLE | FLAG_QUOTE_DOUBLE | FLAG_SQL_ANSI | FLAG_SQL_MYSQL);
+    libinjection_sqli_init(&sf, sql, strlen(sql), FLAG_NONE | FLAG_QUOTE_NONE | FLAG_QUOTE_SINGLE | FLAG_QUOTE_DOUBLE | FLAG_SQL_ANSI | FLAG_SQL_MYSQL);
     if (libinjection_is_sqli(&sf)) ereport(report_level, (errcode(ERRCODE_STATEMENT_TOO_COMPLEX), errmsg("SQL injection found"), errdetail("%s", sf.fingerprint)));
     if (prev_post_parse_analyze_hook) prev_post_parse_analyze_hook(pstate, query, jstate);
 }
