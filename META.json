@@ -1,0 +1,31 @@
+{
+    "name": "pg_injection",
+    "abstract": "PostgreSQL injection",
+    "description": "PostgreSQL detection of sql injection",
+    "version": "1.0.5",
+    "maintainer": "RekGRpth <rekgrpth@gmail.com>",
+    "license": "mit",
+    "provides": {
+        "pg_injection": {
+            "version": "1.0.5"
+        }
+    },
+    "resources": {
+        "bugtracker": {
+            "web": "https://github.com/RekGRpth/pg_injection/issues"
+        },
+        "repository": {
+            "url": "git://github.com/RekGRpth/pg_injection.git",
+            "web": "https://github.com/RekGRpth/pg_injection",
+            "type": "git"
+        }
+    },
+    "generated_by": "RekGRpth",
+    "meta-spec": {
+        "version": "1.0.0",
+        "url": "http://pgxn.org/meta/spec.txt"
+    },
+    "tags": [
+        "injection"
+    ]
+}
