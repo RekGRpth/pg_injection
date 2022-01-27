@@ -2,12 +2,12 @@
     "name": "pg_injection",
     "abstract": "PostgreSQL injection",
     "description": "PostgreSQL detection of sql injection",
-    "version": "1.0.5",
+    "version": "1.0.0",
     "maintainer": "RekGRpth <rekgrpth@gmail.com>",
     "license": "mit",
     "provides": {
         "pg_injection": {
-            "version": "1.0.5"
+            "version": "1.0.0"
         }
     },
     "resources": {
